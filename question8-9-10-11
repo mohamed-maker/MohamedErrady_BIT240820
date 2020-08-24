@@ -1,0 +1,31 @@
+all the queries are from the ROBO3T application
+
+
+#Question8
+Answer: 1
+
+>db.getCollection('bioinf_mongo_examen').find({method_of_admission:"GEL;DENTAL"}).count()
+
+
+
+
+#Question 9
+Answer: 12
+db.getCollection('bioinf_mongo_examen').find({percentage_of_side_effects:{$gt:12}}).count()
+
+
+
+#Question 10
+Answer 
+
+db.getCollection('bioinf_mongo_examen').aggregate([{$unwind:"$company"}, {$group:{_id:"$Drug", avg:{$avg:"$percentage_of_side_effects"}}}, {sort:{{avg:-1}}])
+db.getCollection('bioinf_mongo_examen').aggregate([{$group:_id:"$Drug", avg:{$avg:"$percentage_of_side_effects"}}}, {sort:{avg:-1}}]);
+
+
+#Question 11 
+Answer
+
+db.getCollection('bioinf_mingi_examen').aggregate([{$group:{_id:"$Drug", count:{$sum}}}, max: { $max:"$percentage_of_side_effects"}, 
+min: { $min:"$percentage_of_side_effects"}, {$match:{count{$gt:1}}}]);
+
+
