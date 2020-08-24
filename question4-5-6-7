@@ -1,0 +1,79 @@
+# Question 4
+
+Answer TRDD1
+mysql> select gene_name, (seq_region_end - seq_region_start)+1 as length from gene ORDEr BY length ASc limit 5;
+| gene_name | length |
++-----------+--------+
+| TRDD1     |      8 |
+| TRDD2     |      9 |
+| IGHD7-27  |     11 |
+| TRDD3     |     13 |
+| IGHD4-17  |     16 |
++-----------+--------+
+# Question 5
+
+Answer U6
+mysql> select gene_name, count(transcript_id) from gene g join transcript t on g.gene_id = t.gene_id GROUP BY gene_name ORDER BY count(transcript_id) DESC limit 50;
+
++-----------+----------------------+
+| gene_name | count(transcript_id) |
++-----------+----------------------+
+| U6        |                 1329 |
+| Y_RNA     |                  813 |
+| 5S_rRNA   |                  510 |
+| snoU13    |                  466 |
+| 7SK       |                  297 |
++-----------+----------------------+
+
+
+# Question 6
+Answer chromosome 9
+mysql> select chromosome, count(gene_name) from gene where description like "%cancer%" GROUP BY chromosome ORDER BY count(gene_name) DESC;
++------------+------------------+
+| chromosome | count(gene_name) |
++------------+------------------+
+| X          |               23 |
+| 9          |                5 |
+| 1          |                4 |
+| 17         |                4 |
+| 15         |                3 |
+| 6          |                3 |
+| 7          |                2 |
+| 16         |                2 |
+| 11         |                2 |
+| 13         |                2 |
+| 3          |                2 |
+| 2          |                2 |
+| 10         |                2 |
+| 22         |                2 |
+| 4          |                1 |
+| 19         |                1 |
+| 5          |                1 |
+| 12         |                1 |
+| 8          |                1 |
+| 20         |                1 |
+| 14         |                1 |
+| 18         |                1 |
++------------+------------------+
+
+
+
+
+Answer 45679
+mysql> select count(exon_id) from gene g join transcript t on g.gene_id = t.gene_id join exon_transcript et on t.transcript_id = et.transcript_id where chromosome = "9" ORDER BY count(exon_id) DESC limit 5;
++----------------+
+| count(exon_id) |
++----------------+
+|          45679 |
++----------------+
+
+
+
+# Question 7
+Answer
+Number of rows exon table: 642590
+Number of rows exon_transcript table: 1178393
+Explanation : After transcription a proces called splicing occured in the cells this means that all the intron are cut out of the sequence and all the exons are joins together. 
+It possible to have different transcript (isoforms or a gene) is is possible that one of the causes is a different set of exons. 
+In the exon table only the exon_id is given. In the exon_transcript we also have the transcript column . So 
+it could be that depending on the exon you can have different transcripts. 
