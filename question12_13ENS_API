@@ -1,0 +1,11 @@
+#Question 12 
+Answer: location: 4:136443949-136443949 (so on chromosome 4 position 136443949)
+
+curl 'http://rest.ensembl.org/variation/Mouse/rs4224828' -H 'Content-type:text/x-fasta'
+
+# Question 13
+
+Answer: TAGAATAATACTTCACAGCCCGAAACACAGAGGCGCAGAACAGTCTTCAGTCGCCGCGGT
+AGATGTGCGACTCCAAACGGGAGGCACAGTGACTGCGATAA
+
+curl 'http://rest.ensembl.org/sequence/region/zebrafish/20:33294428..33294528:1' -H 'Content-type:text/x-fasta'
