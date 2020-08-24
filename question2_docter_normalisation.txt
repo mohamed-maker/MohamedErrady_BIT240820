@@ -1,0 +1,15 @@
+UNF (PatientNumber, PatientName, Birthdate, PrescriptionNumber, Medicine, Dosage, DoctorNumber, Doctor, Assistant)
+
+1NF Patient(PatientNumber, PatientName, Birthdate)
+    Drug(PrescriptionNumber, Medicine, Dosage)
+    Dr(DoctorNumber, Doctor, Assistent)
+
+2NF Patient(PatientNumber, PatientName, Birthdate)
+    Doctor(DoctorNumber, Doctor, Assistent, PatientNumber)
+    Drug(DoctorNumber, Doctor, Medicine, Dosage, PatientNumber, patientName)
+
+3NF Patient(PatientNumber, PatientName, Birthdate, Doctornumber)
+    Doctor(DoctorNumber, Doctor, Assistent, PatientNumber)
+    Drug(DoctorNumber, Doctor, Medicine, Dosage, PatientNumber, patientName)
+
+
